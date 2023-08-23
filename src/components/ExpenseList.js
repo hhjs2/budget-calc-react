@@ -3,7 +3,7 @@ import "./ExpenseList.css";
 import ExpenseItem from "./ExpenseItem";
 
 //구조 분해 할당으로 props 나눠서 설정
-const ExpenseList = ({ expenses, handleDelete }) => {
+const ExpenseList = ({ expenses, handleDelete, handleEdit, clearItems }) => {
   // props 안에 들어가 있음
   // props.expenses
   // props.handleDelete
@@ -17,11 +17,16 @@ const ExpenseList = ({ expenses, handleDelete }) => {
               expense={expense}
               key={expense.id}
               handleDelete={handleDelete}
+              handleEdit={handleEdit}
             />
           );
         })}
       </ul>
-      <button className="btn">목록지우기</button>
+      {expenses.length > 0 && (
+        <button onClick={clearItems} className="btn">
+          목록지우기
+        </button>
+      )}
     </>
   );
 };
